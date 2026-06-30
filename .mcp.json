@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "sqlite": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sqlite",
+        "C:\\Temp\\CORSO CLAUDE\\Giorno 5\\CavagnaDemo-master\\cavagna.db"
+      ]
+    }
+  }
+}

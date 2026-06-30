@@ -1,0 +1,46 @@
+@model Quote
+@{
+    ViewData["Title"] = Model.NumeroPreventivo;
+}
+
+<a asp-action="Index">&larr; Torna ai preventivi</a>
+
+<h1>Preventivo @Model.NumeroPreventivo</h1>
+
+<dl>
+    <dt>Cliente</dt><dd>@(Model.Customer?.RagioneSociale ?? "—")</dd>
+    <dt>Data creazione</dt><dd>@Model.DataCreazione.ToString("dd/MM/yyyy")</dd>
+    <dt>Data scadenza</dt><dd>@(Model.DataScadenza?.ToString("dd/MM/yyyy") ?? "—")</dd>
+    <dt>Stato</dt><dd>@Model.Stato</dd>
+</dl>
+
+<h2>Righe</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Prodotto</th>
+            <th>Quantità</th>
+            <th>Prezzo unit.</th>
+            <th>Sconto %</th>
+            <th>Subtotale</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var r in Model.Righe)
+    {
+        <tr>
+            <td>@(r.Product?.Nome ?? $"#{r.ProductId}")</td>
+            <td>@r.Quantita</td>
+            <td>€ @r.PrezzoUnitario.ToString("F2")</td>
+            <td>@r.ScontoPercentuale.ToString("F1")%</td>
+            <td>€ @r.Subtotale.ToString("F2")</td>
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4"><strong>Totale (IVA inc.)</strong></td>
+            <td><strong>€ @Model.Totale.ToString("F2")</strong></td>
+        </tr>
+    </tfoot>
+</table>

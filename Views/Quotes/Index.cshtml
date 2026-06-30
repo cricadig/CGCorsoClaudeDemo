@@ -1,0 +1,39 @@
+@model List<Quote>
+@{
+    ViewData["Title"] = "Preventivi";
+}
+
+<h1>Preventivi</h1>
+
+@if (!Model.Any())
+{
+    <p class="muted">Nessun preventivo presente. Creane uno via API <code>POST /api/quotes</code>.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Cliente</th>
+                <th>Data</th>
+                <th>Stato</th>
+                <th>Totale</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var q in Model)
+        {
+            <tr>
+                <td>@q.NumeroPreventivo</td>
+                <td>@(q.Customer?.RagioneSociale ?? "—")</td>
+                <td>@q.DataCreazione.ToString("dd/MM/yyyy")</td>
+                <td>@q.Stato</td>
+                <td>€ @q.Totale.ToString("F2")</td>
+                <td><a asp-action="Details" asp-route-id="@q.Id">Dettagli</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

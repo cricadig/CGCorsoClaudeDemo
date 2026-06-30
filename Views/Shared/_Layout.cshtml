@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CavagnaDemo</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="brand">CavagnaDemo</a>
+            <a asp-controller="Products" asp-action="Index">Prodotti</a>
+            <a asp-controller="Customers" asp-action="Index">Clienti</a>
+            <a asp-controller="Quotes" asp-action="Index">Preventivi</a>
+            <a href="/swagger" target="_blank">API</a>
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <small>CavagnaDemo — progetto fittizio per training Claude Code</small>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+@model Customer
+@{
+    ViewData["Title"] = Model.RagioneSociale;
+}
+
+<a asp-action="Index">&larr; Torna ai clienti</a>
+
+<h1>@Model.RagioneSociale</h1>
+
+<dl>
+    <dt>P.IVA</dt><dd>@(Model.PartitaIVA ?? "—")</dd>
+    <dt>Email</dt><dd>@(Model.Email ?? "—")</dd>
+    <dt>Telefono</dt><dd>@(Model.Telefono ?? "—")</dd>
+    <dt>Indirizzo</dt><dd>@(Model.Indirizzo ?? "—"), @(Model.CAP ?? "") @(Model.Citta ?? "")</dd>
+    <dt>Nazione</dt><dd>@(Model.Nazione ?? "—")</dd>
+    <dt>Registrato il</dt><dd>@Model.DataRegistrazione.ToString("dd/MM/yyyy")</dd>
+</dl>
+
+<h2>Preventivi (@Model.Quotes.Count)</h2>
+@if (Model.Quotes.Any())
+{
+    <ul>
+    @foreach (var q in Model.Quotes)
+    {
+        <li>@q.NumeroPreventivo — @q.Stato — € @q.Totale.ToString("F2")</li>
+    }
+    </ul>
+}
+else
+{
+    <p class="muted">Nessun preventivo.</p>
+}
+
+<h2>Ordini (@Model.Orders.Count)</h2>
+@if (Model.Orders.Any())
+{
+    <ul>
+    @foreach (var o in Model.Orders)
+    {
+        <li>@o.NumeroOrdine — @o.Stato — € @o.Totale.ToString("F2")</li>
+    }
+    </ul>
+}
+else
+{
+    <p class="muted">Nessun ordine.</p>
+}

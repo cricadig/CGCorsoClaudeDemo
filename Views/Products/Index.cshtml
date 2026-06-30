@@ -1,0 +1,41 @@
+@model ProductListViewModel
+@{
+    ViewData["Title"] = "Prodotti";
+}
+
+<h1>Catalogo prodotti</h1>
+
+<form method="get" class="search-bar">
+    <input type="text" name="search" value="@Model.Search" placeholder="Cerca per nome..." />
+    <button type="submit">Cerca</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Codice</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Prezzo</th>
+            <th>Prezzo IVA inc.</th>
+            <th>Stock</th>
+            <th>Stato</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var p in Model.Items)
+    {
+        <tr class="@(p.Attivo ? "" : "inactive")">
+            <td><code>@p.Codice</code></td>
+            <td>@p.Nome</td>
+            <td>@p.CategoryName</td>
+            <td>€ @p.Prezzo.ToString("F2")</td>
+            <td>€ @p.PrezzoIvaInclusa.ToString("F2")</td>
+            <td>@p.Stock</td>
+            <td>@(p.Attivo ? "Attivo" : "Disattivato")</td>
+            <td><a asp-action="Details" asp-route-id="@p.Id">Dettagli</a></td>
+        </tr>
+    }
+    </tbody>
+</table>

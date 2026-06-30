@@ -1,0 +1,13 @@
+bin/
+obj/
+*.db
+*.db-shm
+*.db-wal
+.vs/
+.idea/
+*.user
+*.suo
+*.cache
+
+# Config personale di Claude Code (l'hook del team in settings.json resta versionato)
+.claude/settings.local.json

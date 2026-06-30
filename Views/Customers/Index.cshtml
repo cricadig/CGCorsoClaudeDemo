@@ -1,0 +1,30 @@
+@model List<Customer>
+@{
+    ViewData["Title"] = "Clienti";
+}
+
+<h1>Clienti</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Ragione sociale</th>
+            <th>P.IVA</th>
+            <th>Città</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.RagioneSociale</td>
+            <td>@(c.PartitaIVA ?? "—")</td>
+            <td>@(c.Citta ?? "—")</td>
+            <td>@(c.Email ?? "—")</td>
+            <td><a asp-action="Details" asp-route-id="@c.Id">Dettagli</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
